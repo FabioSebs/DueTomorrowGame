@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Resources/Fonts/Title.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/rainbow.png" type="Texture" id=2]
+[ext_resource path="res://Resources/horse.png" type="Texture" id=3]
+[ext_resource path="res://Resources/derpydonkey.png" type="Texture" id=4]
+[ext_resource path="res://Scene/TitleScreen.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.819608, 1, 1 )
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://Resources/IndieFlower-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 70
+font_data = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 0.941176, 0, 1 )
+corner_radius_top_left = 120
+corner_radius_top_right = 120
+corner_radius_bottom_right = 120
+corner_radius_bottom_left = 120
+
+[sub_resource type="Animation" id=5]
+resource_name = "play"
+tracks/0/type = "value"
+tracks/0/path = NodePath("DerpyHorse:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("DerpyHorse:rect_scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 1.1, -12.1135, 30, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("DerpyHorse:rect_scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 1.1, -8.02114, 30, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[node name="TitleScreen" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 5 )
+
+[node name="Rainbow" type="TextureRect" parent="."]
+margin_top = 332.0
+margin_right = 233.0
+margin_bottom = 521.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="Horse" type="TextureRect" parent="."]
+margin_left = 144.0
+margin_top = 382.0
+margin_right = 416.0
+margin_bottom = 580.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -225.0
+margin_top = -273.0
+margin_right = 226.0
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 1 )
+text = "MAZE GAME
+BY
+FABIO ESPINOZA"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -196.0
+margin_top = -18.0
+margin_right = 104.0
+margin_bottom = 85.0
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 4 )
+text = "Playasdas"
+
+[node name="DerpyHorse" type="TextureRect" parent="."]
+margin_left = 687.0
+margin_top = 261.0
+margin_right = 959.0
+margin_bottom = 459.0
+rect_pivot_offset = Vector2( 138, 108 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/play = SubResource( 5 )
+
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://FLoor.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Resources/Bojack_Horseman.png" type="Texture" id=2]
+[ext_resource path="res://Scene/Player.gd" type="Script" id=3]
+[ext_resource path="res://Scene/SpringArm.gd" type="Script" id=4]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.493711, 1, 1 )
+
+[sub_resource type="CapsuleShape" id=1]
+height = 2.0
+
+[node name="Spatial" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="FLoor" type="MeshInstance" parent="StaticBody"]
+transform = Transform( 39.6562, 0, 0, 0, 1, 0, 0, 0, 33.7078, 0, 0, 0 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 39.6562, 0, 0, 0, 1, 0, 0, 0, 13.8286, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Wall" type="MeshInstance" parent="."]
+transform = Transform( 39.2886, 0, 0, 0, 49.4904, 0, 0, 0, 9.45017, 0, 0, -18.8663 )
+mesh = ExtResource( 1 )
+
+[node name="Wall2" type="MeshInstance" parent="."]
+transform = Transform( 39.2886, 0, 0, 0, 49.4904, 0, 0, 0, 9.45017, 0.0759249, 0.0717983, 17.8357 )
+mesh = ExtResource( 1 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4629, 8.75529, 0 )
+script = ExtResource( 3 )
+
+[node name="Sprite3D" type="Sprite3D" parent="KinematicBody"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+texture = ExtResource( 2 )
+
+[node name="SpringArm" type="SpringArm" parent="KinematicBody"]
+spring_length = 7.0
+margin = 0.2
+script = ExtResource( 4 )
+
+[node name="Camera" type="Camera" parent="KinematicBody/SpringArm"]
+current = true
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
