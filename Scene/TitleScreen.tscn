@@ -116,13 +116,13 @@ custom_styles/pressed = SubResource( 4 )
 custom_styles/focus = SubResource( 4 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 4 )
-text = "Playasdas"
+text = "Play"
 
 [node name="DerpyHorse" type="TextureRect" parent="."]
-margin_left = 687.0
-margin_top = 261.0
-margin_right = 959.0
-margin_bottom = 459.0
+margin_left = 724.0
+margin_top = 263.0
+margin_right = 996.0
+margin_bottom = 461.0
 rect_pivot_offset = Vector2( 138, 108 )
 texture = ExtResource( 4 )
 expand = true

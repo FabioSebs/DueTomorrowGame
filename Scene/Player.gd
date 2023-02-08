@@ -1,7 +1,7 @@
 extends KinematicBody
 
-export var speed := 7.0
-export var jump_strength := 20.0
+export var speed := 14.0
+export var jump_strength := 40.0
 export var gravity := 50.0
 
 var _velocity := Vector3.ZERO
@@ -23,13 +23,15 @@ func _physics_process(delta) -> void:
 	
 	var just_landed := is_on_floor() and _snap_vector == Vector3.ZERO
 	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
+	var is_against := is_on_wall() and _snap_vector == Vector3.ZERO
 	
-	if is_jumping:
+	if is_jumping or is_against:
 		_velocity.y = jump_strength
 		_snap_vector = Vector3.ZERO
 	elif just_landed:
 		_snap_vector = Vector3.DOWN
-	
+
+		
 	_velocity = move_and_slide_with_snap(_velocity, _snap_vector, Vector3.UP, true)
 	
 	if _velocity.length() > 0.2:
